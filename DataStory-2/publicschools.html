@@ -1,0 +1,584 @@
+<!DOCTYPE HTML>
+	<html>
+
+		<head>
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		    <script src="https://code.highcharts.com/highcharts.js"></script>
+		    <script src="https://code.highcharts.com/modules/data.js"></script>
+		    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+			
+			<title>Issues with Philadelphia Public Schools</title>
+			
+			<script src="https://code.highcharts.com/maps/modules/map.js"></script>
+			<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+			<script src="https://code.highcharts.com/mapdata/countries/us/us-pa-all.js"></script>
+
+		</head>
+
+<body>
+	
+<style>
+	
+	body {
+		margin:40px;
+	}
+	h1{
+		color:#21201E;
+		font-family:"Georgia Bold",Helvetica, Arial, sans-serif;
+		font-size:2.5em;
+		font-weight:800;
+		padding-left:30px;
+		}
+	h2{
+		color:#393837;
+		font-family:"Georgia Regular",Helvetica, Arial, sans-serif;
+		font-size:1.5em;
+		font-weight:800;
+		padding-left:30px;
+	}
+	h3{
+		color:#413F3F;
+		font-family:"Georgia Regular",Helvetica, Arial, sans-serif;
+		font-size:1.0em;
+		font-weight:800;
+		padding-left:30px;
+	}
+	p{
+		color:#605E5C;
+		font-family:"Franklin Light",Helvetica, Arial, sans-serif;
+		font-size:1.1em;
+		font-height:1.5em;
+		word-spacing:-1px;
+		line-height:37px;
+		padding-left:30px;
+		padding-right:30px;
+	}
+	
+	#datatable {display:none;}
+				
+	#datatable2 {display:none;}
+
+	#container {
+    height: 500px; 
+    min-width: 310px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+	}
+	.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+	}
+	.top{
+		width:100%;
+		padding-top:30px;
+		border-top:1.5px solid #D5D5D5;
+	}
+	.middle-top{
+		width:100%;
+		padding-top:30px;
+		border-top:1.5px solid #D5D5D5;
+	}
+	.middle-end{
+		border-top:1.5px solid #D5D5D5;
+		padding-top: 30px;
+		padding-bottom:20px;
+	}
+	.middle-content
+</style>
+	<div class="top">
+		<h1> Public Schools in the 
+			State of Brotherly Love </h1>
+		<h2> How Philadelphia Compares to the Rest of the State </h2>
+		<h3> By Ramona Roberts</h3>
+		<p> Philadelphia is considered the eighth largest school district, and thrives on its budget of $2.8 billion. Half of this budget comes from the City, about a third from the state, and the remaining from the federal government. 
+		Matthew Stanski, the district's chief financial officer explains in an NPR interview the problem being the distribution of the budget to the schools.“ Only 36 cents out of every dollar goes to kids and classrooms. A huge chunk of money — $727 million — goes to charter schools, which compete with traditional public schools for resources in Philadelphia. Health care costs take up another $117 million every year.” </p>
+	</div>
+	
+	<div class="middle-top">
+		<img src="Snackable-Data2.svg">
+		<p>In the last couple of years, the school system has had to close 31 schools, along with lying off thousands of teachers, coaches, librarians, guidance counselors and nurses. Public schools suffer from this the most, especially schools in low-income areas. Schools receive money also based off of property taxes.</p>
+		<p> When the school or neighborhood has a low property tax, that impacts how much money the school can receive for books, proper equipment and materials, updated and modern classrooms and bathrooms and etc.  It’s one thing to look around your neighborhood and see that you aren’t cared about, but to go to school and notice it as well, can discourage students. In fact, it can discourage students to continue their education, and drop out.</p>
+
+	</div>	
+	<div class="middle-end"> </div>
+
+
+	<!--CREATE CHART-->
+	<script type="text/javascript">
+			$(function () {
+			    Highcharts.chart('container', {
+			        data: {
+			            table: 'datatable'
+			        },
+			        exporting: {
+			        	enabled:false
+			        },
+			        chart: {
+			            type: 'column'
+			        },
+			        title: {
+			            text: 'Public School Dropouts Grades 7-12 Dropout Rate by Race 2014-2015'
+			        },
+			        yAxis: {
+			            allowDecimals: false,
+			            title: {
+			                text: 'Students'
+			            }
+			        },
+			        tooltip: {
+			            formatter: function () {
+			                return '<b>' + this.series.name + '</b><br/>' +
+			                    this.point.y + ' ' + this.point.name.toLowerCase();
+
+			            }
+			        }
+			    });
+			})	
+	</script>
+	<!--Chart2-->
+	<script type="text/javascript">
+			$(function () {
+			    Highcharts.chart('container2', {
+			        data: {
+			            table: 'datatable2'
+			        },
+			        exporting: {
+			        	enabled:false
+			        },
+			        chart: {
+			            type: 'column'
+			        },
+			        title: {
+			            text: 'Public School Dropouts Grades 7-12 Dropout Rate by Race 2013-2014'
+			        },
+			        yAxis: {
+			            allowDecimals: false,
+			            title: {
+			                text: 'Students'
+			            }
+			        },
+			        tooltip: {
+			            formatter: function () {
+			                return '<b>' + this.series.name + '</b><br/>' +
+			                    this.point.y + ' ' + this.point.name.toLowerCase();
+			            }
+			        }
+			    });
+			})	
+	</script>
+	</div>
+
+	<!--Map-->
+
+
+<script type="text/javascript">
+$(function () {
+
+    // Prepare demo data
+    var data = [
+        {
+            "hc-key": "us-pa-015",
+            "value": 55
+        },
+        {
+            "hc-key": "us-pa-117",
+            "value": 31
+        },
+        {
+            "hc-key": "us-pa-027",
+            "value": 38
+        },
+        {
+            "hc-key": "us-pa-035",
+            "value": 13
+        },
+        {
+            "hc-key": "us-pa-061",
+            "value": 43
+        },
+        {
+            "hc-key": "us-pa-009",
+            "value": 22
+        },
+        {
+            "hc-key": "us-pa-075",
+            "value": 129
+        },
+        {
+            "hc-key": "us-pa-029",
+            "value": 545
+        },
+        {
+            "hc-key": "us-pa-011",
+            "value": 464
+        },
+        {
+            "hc-key": "us-pa-083",
+            "value": 22
+        },
+        {
+            "hc-key": "us-pa-047",
+            "value": 29
+        },
+        {
+            "hc-key": "us-pa-005",
+            "value": 42
+        },
+        {
+            "hc-key": "us-pa-019",
+            "value": 74
+        },
+        {
+            "hc-key": "us-pa-007",
+            "value": 799
+        },
+        {
+            "hc-key": "us-pa-067",
+            "value": 14
+        },
+        {
+            "hc-key": "us-pa-099",
+            "value": 33
+        },
+        {
+            "hc-key": "us-pa-053",
+            "value": 1
+        },
+        {
+            "hc-key": "us-pa-123",
+            "value": 31
+        },
+        {
+            "hc-key": "us-pa-121",
+            "value": 48
+        },
+        {
+            "hc-key": "us-pa-033",
+            "value": 74
+        },
+        {
+            "hc-key": "us-pa-063",
+            "value": 31
+        },
+        {
+            "hc-key": "us-pa-107",
+            "value": 108
+        },
+        {
+            "hc-key": "us-pa-079",
+            "value": 294
+        },
+        {
+            "hc-key": "us-pa-055",
+            "value": 116
+        },
+        {
+            "hc-key": "us-pa-001",
+            "value": 75
+        },
+        {
+            "hc-key": "us-pa-089",
+            "value": 133
+        },
+        {
+            "hc-key": "us-pa-069",
+            "value": 163
+        },
+        {
+            "hc-key": "us-pa-093",
+            "value": 7
+        },
+        {
+            "hc-key": "us-pa-081",
+            "value": 101
+        },
+        {
+            "hc-key": "us-pa-095",
+            "value": 184
+        },
+        {
+            "hc-key": "us-pa-025",
+            "value": 35
+        },
+        {
+            "hc-key": "us-pa-065",
+            "value": 41
+        },
+        {
+            "hc-key": "us-pa-003",
+            "value": 480
+
+        },
+        {
+            "hc-key": "us-pa-129",
+            "value": 185
+        },
+        {
+            "hc-key": "us-pa-021",
+            "value": 26
+        },
+        {
+            "hc-key": "us-pa-013",
+            "value": 86
+        },
+        {
+            "hc-key": "us-pa-039",
+            "value": 47
+        },
+        {
+            "hc-key": "us-pa-023",
+            "value": 3
+        },
+        {
+            "hc-key": "us-pa-097",
+            "value": 73
+        },
+        {
+            "hc-key": "us-pa-043",
+            "value": 548
+        },
+        {
+            "hc-key": "us-pa-077",
+            "value": 362
+        },
+        {
+            "hc-key": "us-pa-091",
+            "value": 267
+        },
+        {
+            "hc-key": "us-pa-131",
+            "value": 18
+        },
+        {
+            "hc-key": "us-pa-113",
+            "value": 2
+        },
+        {
+            "hc-key": "us-pa-037",
+            "value": 96
+        },
+        {
+            "hc-key": "us-pa-045",
+            "value": 210
+        },
+        {
+            "hc-key": "us-pa-119",
+            "value": 12
+        },
+        {
+            "hc-key": "us-pa-087",
+            "value": 36
+        },
+        {
+            "hc-key": "us-pa-031",
+            "value": 27
+        },
+        {
+            "hc-key": "us-pa-085",
+            "value": 77
+        },
+        {
+            "hc-key": "us-pa-071",
+            "value": 326
+        },
+        {
+            "hc-key": "us-pa-049",
+            "value": 328
+        },
+        {
+            "hc-key": "us-pa-041",
+            "value": 118
+        },
+        {
+            "hc-key": "us-pa-127",
+            "value": 27
+        },
+        {
+            "hc-key": "us-pa-017",
+            "value": 204
+        },
+        {
+            "hc-key": "us-pa-059",
+            "value": 31
+        },
+        {
+            "hc-key": "us-pa-051",
+            "value": 171
+        },
+        {
+            "hc-key": "us-pa-101",
+            "value": 3553
+        },
+        {
+            "hc-key": "us-pa-103",
+            "value": 46
+        },
+        {
+            "hc-key": "us-pa-115",
+            "value": 16
+        },
+        {
+            "hc-key": "us-pa-125",
+            "value": 112
+        },
+        {
+            "hc-key": "us-pa-105",
+            "value": 16
+        },
+        {
+            "hc-key": "us-pa-109",
+            "value": 9
+        },
+        {
+            "hc-key": "us-pa-111",
+            "value": 32
+        },
+        {
+            "hc-key": "us-pa-057",
+            "value": 14
+        },
+        {
+            "hc-key": "us-pa-073",
+            "value": 46
+        },
+        {
+            "hc-key": "us-pa-133",
+            "value": 363
+        }
+    ];
+
+    // Initiate the chart
+    $('#container3').highcharts('Map', {
+
+        title : {
+            text : 'Pennsylvania Dropout Rate by County'
+        },
+
+        subtitle : {
+            text : 'Source map: <a href="https://code.highcharts.com/mapdata/countries/us/us-pa-all.js">Pennsylvania</a>'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        colorAxis: {
+            min: 0
+        },
+
+        series : [{
+            data : data,
+            mapData: Highcharts.maps['countries/us/us-pa-all'],
+            joinBy: 'hc-key',
+            name: 'Random data',
+            states: {
+                hover: {
+                    color: '#a4edba'
+                }
+            },
+            
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }]
+    });
+});
+</script>
+
+	<!--CONTENT-->
+		
+
+	<div id="container" style= "width:50%; float:left;
+								height: 400px; 
+								margin : 0 auto">
+								
+	</div>
+
+
+<table id="datatable">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Male</th>
+            <th>Female</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Asian</th>
+            <td>113</td>
+            <td>78</td>
+
+        <tr>
+            <th>Black</th>
+            <td>2036</td>
+            <td>1608</td>
+        </tr>
+        <tr>
+            <th>Hispanic</th>
+            <td>1309</td>
+            <td>946</td>
+        </tr>
+        <tr>
+            <th>White</th>
+            <td>3126</td>
+            <td>2274</td>
+        </tr>
+        
+    </tbody>
+</table>
+	
+	<div id="container2" style= "width:50%; float:left;
+								height: 400px; 
+								
+								margin : 0 auto">				
+	</div>
+
+<table id="datatable2">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Male</th>
+            <th>Female</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Asian</th>
+            <td>140</td>
+            <td>76</td>
+
+        <tr>
+            <th>Black</th>
+            <td>2627</td>
+            <td>1879</td>
+        </tr>
+        <tr>
+            <th>Hispanic</th>
+            <td>1485</td>
+            <td>1150</td>
+        </tr>
+        <tr>
+            <th>White</th>
+            <td>3663</td>
+            <td>2607</td>
+        </tr>
+        
+    </tbody>
+</table>
+	
+
+	<p>Public schools limited funding causes counter issues for the school to offer quality education to the students. Limiting funds limits teachers, which creates larger class sizes, which eliminates intimate relationships between teachers and students. </p>
+	<p> Majority of public schools in Philadelphia are largely minorities. According to the U.S Census, during the 2013-2014 school year there were 122,065 African Americans enrolled in grades 7-12 in the state of Pennsylvania. You also had 584,801 whites, 70,459 Hispanics, 27,394 Asians. In the following school year there were similar numbers of enrollment. </p>
+	<p>The total dropout rate for the 2013-2014 school year was about 1.7%, meaning about 13,945 students. For the following school year you had a dropout rate of 1.45% meaning 11,762 total dropouts. However this is an example of Simpson’s paradox. Together the dropout rate seems fairly low, but if you separate the data, and compare Philadelphia to other counties of the state, you will see different numbers and be more aware of this issue. </p>
+	<div id="container3"></div>
+	<p>As you can see, Philadelphia has the highest dropout rate in the state. The county alone contains 3,553 dropouts with a rate of 4.18%. Philadelphia educates more children from low-income backgrounds than any other district, with private schooling not always being an affordable option. Unfortunately, Philadelphia is just one example of inner city communities receiving poor education.  This is a national issue that hits minorities and low-income families.  The education system is segregated based on your income, and with a system like this, it limits children an unfair chance at success.  </p>
+	
+
+</body>
+</html>
